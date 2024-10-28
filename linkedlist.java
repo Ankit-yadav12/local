@@ -168,5 +168,7 @@ public class linkedlist {
         ll.print();
         ll.removeNth(2);
         ll.print();
+
+        System.out.println( 9/2);
     }
 }
