@@ -151,24 +151,65 @@ public class linkedlist {
         prev.next= curr.next;
         length--;
     }
+    
+    public Node findmid(Node head){
+        Node slow = head;
+        Node fast = head;
+
+        while(fast!= null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    public boolean checkPalindrome(){
+        if(head== null || head.next==null){
+            return true;
+        }
+        Node midNode = findmid(head);
+
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+        while (curr!= null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node right = prev;
+        Node left = head;
+
+        while(right!= null){
+            if(left.data != right.data){
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
     public static void main(String[] args) {
         linkedlist ll = new linkedlist();
         ll.addStart(1);
-        ll.addStart(3);
-        ll.addEnd(9);
-        ll.addEnd(7);
-        ll.addIndex(2, 5);
-        ll.print();
-        // ll.removeStart();
-        // ll.removeEnd();
+        ll.addEnd(2);
+        ll.addEnd(1);
+        // ll.addStart(3);
+        // ll.addEnd(9);
+        // ll.addEnd(7);
+        // ll.addIndex(2, 5);
         // ll.print();
-        ll.iterativeSearch(5);
-        ll.recursiveSearch(7, head, 0);
-        ll.reverse();
-        ll.print();
-        ll.removeNth(2);
-        ll.print();
+        // // ll.removeStart();
+        // // ll.removeEnd();
+        // // ll.print();
+        // ll.iterativeSearch(5);
+        // ll.recursiveSearch(7, head, 0);
+        // ll.reverse();
+        // ll.print();
+        // ll.removeNth(2);
+        // ll.print();
 
-        System.out.println( 9/2);
+        System.out.println(ll.checkPalindrome());
     }
 }
